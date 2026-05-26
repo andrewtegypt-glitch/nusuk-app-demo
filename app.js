@@ -138,14 +138,23 @@
 
   function showToast(message) {
     toast.textContent = message;
+    toast.classList.toggle('toast--top', workflowLayer?.classList.contains('is-open'));
     toast.classList.add('is-visible');
     clearTimeout(showToast.timer);
-    showToast.timer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+    showToast.timer = setTimeout(() => {
+      toast.classList.remove('is-visible', 'toast--top');
+    }, 2200);
   }
 
   function openFlow(html) {
     lastFocused = document.activeElement;
-    workflowContent.innerHTML = html;
+    workflowContent.innerHTML = `
+      <nav class="flow-nav" aria-label="Workflow navigation">
+        <button class="flow-back-link" type="button" data-action="close-flow">← Back to app</button>
+        <span>Interactive demo</span>
+      </nav>
+      ${html}
+    `;
     workflowLayer.hidden = false;
     requestAnimationFrame(() => workflowLayer.classList.add('is-open'));
     workflowContent.querySelector('button, [href], input, select, textarea')?.focus();
@@ -197,8 +206,8 @@
         <div><strong>6 mo</strong><span>Faster if family joins</span></div>
       </div>
       <div class="flow-actions">
-        <button class="flow-btn flow-btn--secondary" type="button" data-action="switch-parent-goals">View in parent</button>
-        <button class="flow-btn" type="button" data-action="open-contribution" data-goal="${goal.title}">Contribute</button>
+        <button class="flow-btn flow-btn--secondary" type="button" data-action="switch-parent-goals">Go to parent goals</button>
+        <button class="flow-btn" type="button" data-action="open-contribution" data-goal="${goal.title}">Add contribution</button>
       </div>
     `);
   }
@@ -225,8 +234,8 @@
         <p class="flow-copy">This shows the parent-to-child funding moment: choose amount, confirm, then the feed and goal progress respond.</p>
       </div>
       <div class="flow-actions">
-        <button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Cancel</button>
-        <button class="flow-btn" type="button" data-action="confirm-contribution" data-goal="${goalTitle}">Confirm $50</button>
+        <button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Back</button>
+        <button class="flow-btn" type="button" data-action="confirm-contribution" data-goal="${goalTitle}">Confirm contribution</button>
       </div>
     `);
   }
@@ -285,9 +294,9 @@
         ${quiz}
       </div>
       <div class="flow-actions">
-        ${lessonStep > 0 ? '<button class="flow-btn flow-btn--secondary" type="button" data-action="lesson-back">Back</button>' : '<button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Exit</button>'}
+        ${lessonStep > 0 ? '<button class="flow-btn flow-btn--secondary" type="button" data-action="lesson-back">Previous step</button>' : '<button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Back to learn</button>'}
         <button class="flow-btn" type="button" data-action="${lessonStep === lesson.steps.length - 1 ? 'complete-lesson' : 'lesson-next'}" data-lesson="${key}">
-          ${lessonStep === lesson.steps.length - 1 ? `Earn ${lesson.xp} XP` : 'Continue'}
+          ${lessonStep === lesson.steps.length - 1 ? `Finish · earn ${lesson.xp} XP` : 'Next step'}
         </button>
       </div>
     `);
@@ -321,8 +330,8 @@
         </div>
       </div>
       <div class="flow-actions">
-        <button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Cancel</button>
-        <button class="flow-btn" type="button" data-action="confirm-reward">Request approval</button>
+        <button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Back</button>
+        <button class="flow-btn" type="button" data-action="confirm-reward">Send to parent</button>
       </div>
     `);
   }
@@ -361,8 +370,8 @@
         <span>${addGoalDraft.child} · ${addGoalDraft.goal} · ${money(addGoalDraft.amount)}</span>
       </div>
       <div class="flow-actions">
-        ${addGoalStep > 0 ? '<button class="flow-btn flow-btn--secondary" type="button" data-action="goal-back">Back</button>' : '<button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Cancel</button>'}
-        <button class="flow-btn" type="button" data-action="${addGoalStep === 2 ? 'create-goal' : 'goal-next'}">${addGoalStep === 2 ? 'Create goal' : 'Next'}</button>
+        ${addGoalStep > 0 ? '<button class="flow-btn flow-btn--secondary" type="button" data-action="goal-back">Previous step</button>' : '<button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Back to goals</button>'}
+        <button class="flow-btn" type="button" data-action="${addGoalStep === 2 ? 'create-goal' : 'goal-next'}">${addGoalStep === 2 ? 'Create goal' : 'Next step'}</button>
       </div>
     `);
   }
@@ -409,7 +418,7 @@
         <p class="flow-copy">This drill-down lets a parent see one person's role, contribution history, permissions, and the next useful action.</p>
       </div>
       <div class="flow-actions">
-        <button class="flow-btn flow-btn--secondary" type="button" data-action="switch-parent-goals">See goals</button>
+        <button class="flow-btn flow-btn--secondary" type="button" data-action="switch-parent-goals">Go to goals</button>
         <button class="flow-btn" type="button" data-action="open-contribution" data-goal="University fund">Add contribution</button>
       </div>
     `);
@@ -450,7 +459,8 @@
         <p class="flow-copy">Streaks reward repeated learning, saving check-ins, and parent-child money conversations.</p>
       </div>
       <div class="flow-actions">
-        <button class="flow-btn" type="button" data-action="switch-child-learn">Do today’s lesson</button>
+        <button class="flow-btn flow-btn--secondary" type="button" data-action="close-flow">Back</button>
+        <button class="flow-btn" type="button" data-action="switch-child-learn">Go to Learn</button>
       </div>
     `);
   }
@@ -481,7 +491,7 @@
       if (action === 'open-contribution') return renderContribution(actionEl.dataset.goal || 'University fund');
       if (action === 'confirm-contribution') return confirmContribution(actionEl.dataset.goal || 'University fund');
       if (action === 'lesson-next') { lessonStep += 1; return renderLesson(actionEl.dataset.lesson); }
-      if (action === 'lesson-back') { lessonStep -= 1; return renderLesson(Object.keys(lessonData).find((k) => lessonData[k].title === workflowContent.querySelector('h2')?.textContent) || 'compound'); }
+      if (action === 'lesson-back') { lessonStep = Math.max(0, lessonStep - 1); return renderLesson(Object.keys(lessonData).find((k) => lessonData[k].title === workflowContent.querySelector('h2')?.textContent) || 'compound'); }
       if (action === 'complete-lesson') return completeLesson(actionEl.dataset.lesson);
       if (action === 'answer-quiz') {
         actionEl.closest('.choice-list')?.querySelectorAll('.choice-btn').forEach((btn) => btn.classList.remove('is-selected', 'is-wrong'));
@@ -501,7 +511,7 @@
       }
       if (action === 'open-add-goal') { addGoalStep = 0; return renderAddGoal(); }
       if (action === 'goal-next') { addGoalStep += 1; return renderAddGoal(); }
-      if (action === 'goal-back') { addGoalStep -= 1; return renderAddGoal(); }
+      if (action === 'goal-back') { addGoalStep = Math.max(0, addGoalStep - 1); return renderAddGoal(); }
       if (action === 'set-draft' || action === 'set-draft-number') {
         addGoalDraft[actionEl.dataset.field] = action === 'set-draft-number' ? Number(actionEl.dataset.value) : actionEl.dataset.value;
         return renderAddGoal();
