@@ -6,7 +6,9 @@
       ".firebaserc",
       "**/.*",
       "**/node_modules/**",
-      "qa-*.png"
+      "qa-*.png",
+      "README.md",
+      "HANDOFF.md"
     ],
     "headers": [
       {
