@@ -1,4 +1,4 @@
-# Nusuk App Demo — Handoff
+# Ghad App Demo — Handoff
 
 Static HTML / CSS / vanilla JS prototype of a family financial literacy mobile app. No build step, no external libraries except a single Fontshare CSS import for the Satoshi typeface (with a system fallback stack).
 

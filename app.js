@@ -1,4 +1,4 @@
-// Nusuk App Demo — interactive workflow prototype
+// Ghad App Demo — interactive workflow prototype
 (function () {
   'use strict';
 

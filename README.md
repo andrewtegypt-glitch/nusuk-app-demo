@@ -1,4 +1,4 @@
-# Nusuk App Demo
+# Ghad App Demo
 
 Interactive mobile app demo for a family financial literacy platform.
 
