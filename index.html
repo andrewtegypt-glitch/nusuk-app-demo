@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Nusuk App Demo</title>
+<meta name="description" content="Nusuk — a family financial literacy mobile app prototype." />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a1a3a'/><path d='M9 22V10l14 12V10' stroke='%23f5b342' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+</head>
+<body>
+  <main class="stage" role="main">
+    <header class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="36" height="36" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0a1a3a" stroke="#f5b342" stroke-width="1.5"/>
+          <path d="M11 28V12l18 16V12" stroke="#f5b342" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>Nusuk</h1>
+        <p>Family financial literacy</p>
+      </div>
+    </header>
+
+    <div class="view-toggle" role="tablist" aria-label="App view">
+      <button class="toggle-btn is-active" id="toggleChild" role="tab" aria-selected="true" aria-controls="view-child" data-view="child">
+        <span class="toggle-dot" aria-hidden="true"></span>
+        Child view
+      </button>
+      <button class="toggle-btn" id="toggleParent" role="tab" aria-selected="false" aria-controls="view-parent" data-view="parent">
+        <span class="toggle-dot" aria-hidden="true"></span>
+        Parent view
+      </button>
+    </div>
+
+    <div class="phone" aria-label="Phone preview">
+      <div class="phone-notch" aria-hidden="true"></div>
+      <div class="phone-side phone-side--volume-up" aria-hidden="true"></div>
+      <div class="phone-side phone-side--volume-down" aria-hidden="true"></div>
+      <div class="phone-side phone-side--power" aria-hidden="true"></div>
+
+      <div class="phone-screen">
+        <!-- Status bar -->
+        <div class="status-bar" aria-hidden="true">
+          <span class="status-time">9:41</span>
+          <span class="status-notch"></span>
+          <span class="status-right">
+            <svg viewBox="0 0 18 12" width="16" height="11" fill="none" aria-hidden="true">
+              <path d="M1 4.5C2.5 3 4.5 1.5 9 1.5s6.5 1.5 8 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M4 7.5c1-1 2.5-2 5-2s4 1 5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="9" cy="10" r="1" fill="currentColor"/>
+            </svg>
+            <svg viewBox="0 0 16 12" width="16" height="11" fill="none" aria-hidden="true">
+              <path d="M1 4h10v6H1z" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M1 5h7v4H1z" fill="currentColor"/>
+              <path d="M12 5.5h1.5v3H12z" fill="currentColor"/>
+            </svg>
+            <span class="status-battery" aria-label="Battery 86 percent">
+              <span class="status-battery-fill"></span>
+            </span>
+          </span>
+        </div>
+
+        <!-- CHILD VIEW -->
+        <section id="view-child" class="app-view app-view--child is-active" role="tabpanel" aria-label="Child view">
+          <!-- Header -->
+          <div class="child-header">
+            <div class="child-header-bg" aria-hidden="true"></div>
+            <div class="child-header-top">
+              <div class="child-greet">
+                <p class="eyebrow">Welcome back</p>
+                <h2>Hi, Youssef <span aria-hidden="true">👋</span></h2>
+                <p class="child-meta">Age 12 · Level 5</p>
+              </div>
+              <button class="streak-badge" aria-label="Seven day streak">
+                <span class="streak-flame" aria-hidden="true">🔥</span>
+                <span class="streak-count">7</span>
+                <span class="streak-label">day streak</span>
+              </button>
+            </div>
+            <div class="xp-block" aria-label="Experience progress">
+              <div class="xp-top">
+                <span class="xp-level">Level 5</span>
+                <span class="xp-points"><strong>1,240</strong> XP</span>
+              </div>
+              <div class="xp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62">
+                <span class="xp-bar-fill" style="width:62%"></span>
+              </div>
+              <p class="xp-hint">480 XP to Level 6</p>
+            </div>
+          </div>
+
+          <!-- Scrollable content -->
+          <div class="scroll-area" data-scroll="child">
+
+            <!-- Home tab -->
+            <div class="tab-pane is-active" data-pane="child-home">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">My goals</h3>
+                  <button class="section-link" type="button">See all</button>
+                </header>
+                <div class="goal-list">
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">🏺</div>
+                    <div class="goal-body">
+                      <div class="goal-top">
+                        <h4>University fund</h4>
+                        <span class="goal-pct">34%</span>
+                      </div>
+                      <div class="progress progress--blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="34">
+                        <span class="progress-fill" style="width:34%"></span>
+                      </div>
+                      <p class="goal-amounts"><strong>$1,700</strong> <span>of $5,000</span></p>
+                    </div>
+                  </article>
+
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">💻</div>
+                    <div class="goal-body">
+                      <div class="goal-top">
+                        <h4>First laptop</h4>
+                        <span class="goal-pct">72%</span>
+                      </div>
+                      <div class="progress progress--amber" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
+                        <span class="progress-fill" style="width:72%"></span>
+                      </div>
+                      <p class="goal-amounts"><strong>$360</strong> <span>of $500</span></p>
+                    </div>
+                  </article>
+
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">🎁</div>
+                    <div class="goal-body">
+                      <div class="goal-top">
+                        <h4>Eid savings</h4>
+                        <span class="goal-pct">18%</span>
+                      </div>
+                      <div class="progress progress--green" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18">
+                        <span class="progress-fill" style="width:18%"></span>
+                      </div>
+                      <p class="goal-amounts"><strong>$90</strong> <span>of $500</span></p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Lessons</h3>
+                  <button class="section-link" type="button">Library</button>
+                </header>
+                <div class="lesson-list">
+                  <article class="lesson-card lesson-card--blue">
+                    <div class="lesson-emoji" aria-hidden="true">🎓</div>
+                    <div class="lesson-body">
+                      <p class="lesson-eyebrow">Money basics</p>
+                      <h4>What is compounding interest?</h4>
+                      <p class="lesson-meta">5 min · +60 XP</p>
+                    </div>
+                    <button class="lesson-cta" type="button">Start</button>
+                  </article>
+
+                  <article class="lesson-card lesson-card--green">
+                    <div class="lesson-emoji" aria-hidden="true">📈</div>
+                    <div class="lesson-body">
+                      <p class="lesson-eyebrow">Economy 101</p>
+                      <h4>How does inflation work?</h4>
+                      <p class="lesson-meta">4 min · +50 XP</p>
+                    </div>
+                    <button class="lesson-cta" type="button">Start</button>
+                  </article>
+                </div>
+              </section>
+
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">My badges</h3>
+                  <button class="section-link" type="button">All badges</button>
+                </header>
+                <div class="badge-grid">
+                  <div class="badge-tile">
+                    <div class="badge-icon badge-icon--gold" aria-hidden="true">⭐</div>
+                    <p class="badge-name">First saver</p>
+                    <p class="badge-sub">Earned</p>
+                  </div>
+                  <div class="badge-tile">
+                    <div class="badge-icon badge-icon--blue" aria-hidden="true">🎯</div>
+                    <p class="badge-name">Goal getter</p>
+                    <p class="badge-sub">Earned</p>
+                  </div>
+                  <div class="badge-tile">
+                    <div class="badge-icon badge-icon--green" aria-hidden="true">🌱</div>
+                    <p class="badge-name">Smart spender</p>
+                    <p class="badge-sub">Earned</p>
+                  </div>
+                  <div class="badge-tile">
+                    <div class="badge-icon badge-icon--purple" aria-hidden="true">📚</div>
+                    <p class="badge-name">Quick learner</p>
+                    <p class="badge-sub">Earned</p>
+                  </div>
+                </div>
+              </section>
+
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Goals tab -->
+            <div class="tab-pane" data-pane="child-goals">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">All goals</h3>
+                  <span class="section-pill">3 active</span>
+                </header>
+                <div class="goal-list">
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">🏺</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>University fund</h4><span class="goal-pct">34%</span></div>
+                      <div class="progress progress--blue"><span class="progress-fill" style="width:34%"></span></div>
+                      <p class="goal-amounts"><strong>$1,700</strong> <span>of $5,000</span></p>
+                      <p class="goal-note">Target: Sep 2030</p>
+                    </div>
+                  </article>
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">💻</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>First laptop</h4><span class="goal-pct">72%</span></div>
+                      <div class="progress progress--amber"><span class="progress-fill" style="width:72%"></span></div>
+                      <p class="goal-amounts"><strong>$360</strong> <span>of $500</span></p>
+                      <p class="goal-note">Target: Aug 2026</p>
+                    </div>
+                  </article>
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">🎁</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>Eid savings</h4><span class="goal-pct">18%</span></div>
+                      <div class="progress progress--green"><span class="progress-fill" style="width:18%"></span></div>
+                      <p class="goal-amounts"><strong>$90</strong> <span>of $500</span></p>
+                      <p class="goal-note">Target: Mar 2027</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Learn tab -->
+            <div class="tab-pane" data-pane="child-learn">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Keep learning</h3>
+                  <span class="section-pill">2 in progress</span>
+                </header>
+                <div class="lesson-list">
+                  <article class="lesson-card lesson-card--blue">
+                    <div class="lesson-emoji" aria-hidden="true">🎓</div>
+                    <div class="lesson-body">
+                      <p class="lesson-eyebrow">Money basics</p>
+                      <h4>What is compounding interest?</h4>
+                      <p class="lesson-meta">5 min · +60 XP</p>
+                    </div>
+                    <button class="lesson-cta" type="button">Start</button>
+                  </article>
+                  <article class="lesson-card lesson-card--green">
+                    <div class="lesson-emoji" aria-hidden="true">📈</div>
+                    <div class="lesson-body">
+                      <p class="lesson-eyebrow">Economy 101</p>
+                      <h4>How does inflation work?</h4>
+                      <p class="lesson-meta">4 min · +50 XP</p>
+                    </div>
+                    <button class="lesson-cta" type="button">Start</button>
+                  </article>
+                  <article class="lesson-card lesson-card--amber">
+                    <div class="lesson-emoji" aria-hidden="true">🏦</div>
+                    <div class="lesson-body">
+                      <p class="lesson-eyebrow">Saving</p>
+                      <h4>How banks work</h4>
+                      <p class="lesson-meta">6 min · +75 XP</p>
+                    </div>
+                    <button class="lesson-cta" type="button">Start</button>
+                  </article>
+                </div>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Rewards tab -->
+            <div class="tab-pane" data-pane="child-rewards">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Rewards</h3>
+                  <span class="section-pill section-pill--amber">1,240 XP</span>
+                </header>
+                <div class="reward-list">
+                  <article class="reward-card">
+                    <div class="reward-emoji" aria-hidden="true">🎧</div>
+                    <div class="reward-body">
+                      <h4>Bluetooth headphones</h4>
+                      <p>Unlock at 2,000 XP</p>
+                    </div>
+                    <span class="reward-lock" aria-hidden="true">🔒</span>
+                  </article>
+                  <article class="reward-card">
+                    <div class="reward-emoji" aria-hidden="true">🎮</div>
+                    <div class="reward-body">
+                      <h4>30 min extra screen time</h4>
+                      <p>Unlock at 1,500 XP</p>
+                    </div>
+                    <span class="reward-lock" aria-hidden="true">🔒</span>
+                  </article>
+                  <article class="reward-card reward-card--ready">
+                    <div class="reward-emoji" aria-hidden="true">🍦</div>
+                    <div class="reward-body">
+                      <h4>Family ice cream night</h4>
+                      <p>Ready to redeem · 1,000 XP</p>
+                    </div>
+                    <button class="reward-claim" type="button">Claim</button>
+                  </article>
+                </div>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+          </div>
+
+          <!-- Bottom nav -->
+          <nav class="bottom-nav" aria-label="Child app navigation">
+            <button class="nav-btn is-active" data-tab="child-home" aria-current="page">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-btn" data-tab="child-goals">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+              </span>
+              <span class="nav-label">Goals</span>
+            </button>
+            <button class="nav-btn" data-tab="child-learn">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 6h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 6a2 2 0 0 1 2-2h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="nav-label">Learn</span>
+            </button>
+            <button class="nav-btn" data-tab="child-rewards">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 9h16v3H4z" stroke="currentColor" stroke-width="1.8"/><path d="M5 12h14v8H5z" stroke="currentColor" stroke-width="1.8"/><path d="M12 9v11M8 9a3 3 0 0 1 4-3 3 3 0 0 1 4 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="nav-label">Rewards</span>
+            </button>
+          </nav>
+        </section>
+
+        <!-- PARENT VIEW -->
+        <section id="view-parent" class="app-view app-view--parent" role="tabpanel" aria-label="Parent view" hidden>
+          <div class="parent-header">
+            <div class="parent-header-top">
+              <div>
+                <p class="eyebrow eyebrow--light">Tuesday, May 26</p>
+                <h2>Good morning, Fatima</h2>
+              </div>
+              <button class="header-icon" aria-label="Notifications" type="button">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M6 16V10a6 6 0 0 1 12 0v6l1.5 2.5H4.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M10 20a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <span class="header-dot" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-box">
+                <p class="summary-num">3</p>
+                <p class="summary-label">Children</p>
+              </div>
+              <div class="summary-box">
+                <p class="summary-num">5</p>
+                <p class="summary-label">Goals</p>
+              </div>
+              <div class="summary-box summary-box--accent">
+                <p class="summary-num">$4,200</p>
+                <p class="summary-label">Saved</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scroll-area" data-scroll="parent">
+
+            <!-- Dashboard pane -->
+            <div class="tab-pane is-active" data-pane="parent-dashboard">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Recent contributions</h3>
+                  <button class="section-link" type="button">View all</button>
+                </header>
+                <ul class="feed">
+                  <li class="feed-item">
+                    <span class="feed-avatar feed-avatar--blue" aria-hidden="true">👨</span>
+                    <div class="feed-body">
+                      <p class="feed-name">Ahmed (Dad)</p>
+                      <p class="feed-meta">University fund · 2h ago</p>
+                    </div>
+                    <span class="feed-amount">+$150</span>
+                  </li>
+                  <li class="feed-item">
+                    <span class="feed-avatar feed-avatar--amber" aria-hidden="true">👵</span>
+                    <div class="feed-body">
+                      <p class="feed-name">Grandma Aisha</p>
+                      <p class="feed-meta">Eid savings · Yesterday</p>
+                    </div>
+                    <span class="feed-amount">+$50</span>
+                  </li>
+                  <li class="feed-item">
+                    <span class="feed-avatar feed-avatar--green" aria-hidden="true">🧑</span>
+                    <div class="feed-body">
+                      <p class="feed-name">Youssef</p>
+                      <p class="feed-meta">First laptop · 2 days ago</p>
+                    </div>
+                    <span class="feed-amount">+$20</span>
+                  </li>
+                  <li class="feed-item">
+                    <span class="feed-avatar feed-avatar--purple" aria-hidden="true">👩</span>
+                    <div class="feed-body">
+                      <p class="feed-name">Fatima (You)</p>
+                      <p class="feed-meta">University fund · 3 days ago</p>
+                    </div>
+                    <span class="feed-amount">+$200</span>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Active goals</h3>
+                  <button class="add-goal-btn" type="button">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                    Add goal
+                  </button>
+                </header>
+                <div class="goal-list">
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">🏺</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>University fund · Youssef</h4><span class="goal-pct">34%</span></div>
+                      <div class="progress progress--blue"><span class="progress-fill" style="width:34%"></span></div>
+                      <p class="goal-amounts"><strong>$1,700</strong> <span>of $5,000</span></p>
+                    </div>
+                  </article>
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">💻</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>First laptop · Youssef</h4><span class="goal-pct">72%</span></div>
+                      <div class="progress progress--amber"><span class="progress-fill" style="width:72%"></span></div>
+                      <p class="goal-amounts"><strong>$360</strong> <span>of $500</span></p>
+                    </div>
+                  </article>
+                  <article class="goal-card">
+                    <div class="goal-emoji" aria-hidden="true">🎁</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>Eid savings · Family</h4><span class="goal-pct">18%</span></div>
+                      <div class="progress progress--green"><span class="progress-fill" style="width:18%"></span></div>
+                      <p class="goal-amounts"><strong>$90</strong> <span>of $500</span></p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Goals pane -->
+            <div class="tab-pane" data-pane="parent-goals">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">All family goals</h3>
+                  <button class="add-goal-btn" type="button">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                    New
+                  </button>
+                </header>
+                <div class="goal-list">
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">🏺</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>University fund</h4><span class="goal-pct">34%</span></div>
+                      <div class="progress progress--blue"><span class="progress-fill" style="width:34%"></span></div>
+                      <p class="goal-amounts"><strong>$1,700</strong> <span>of $5,000</span></p>
+                      <p class="goal-note">For Youssef · Target Sep 2030</p>
+                    </div>
+                  </article>
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">💻</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>First laptop</h4><span class="goal-pct">72%</span></div>
+                      <div class="progress progress--amber"><span class="progress-fill" style="width:72%"></span></div>
+                      <p class="goal-amounts"><strong>$360</strong> <span>of $500</span></p>
+                      <p class="goal-note">For Youssef · Target Aug 2026</p>
+                    </div>
+                  </article>
+                  <article class="goal-card goal-card--lg">
+                    <div class="goal-emoji" aria-hidden="true">🎁</div>
+                    <div class="goal-body">
+                      <div class="goal-top"><h4>Eid savings</h4><span class="goal-pct">18%</span></div>
+                      <div class="progress progress--green"><span class="progress-fill" style="width:18%"></span></div>
+                      <p class="goal-amounts"><strong>$90</strong> <span>of $500</span></p>
+                      <p class="goal-note">For the whole family</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Family pane -->
+            <div class="tab-pane" data-pane="parent-family">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Family</h3>
+                  <span class="section-pill">5 members</span>
+                </header>
+                <ul class="family-list">
+                  <li class="family-item">
+                    <span class="family-avatar family-avatar--purple" aria-hidden="true">👩</span>
+                    <div class="family-body">
+                      <p class="family-name">Fatima Al-Mansour</p>
+                      <p class="family-role">Parent · You</p>
+                    </div>
+                    <span class="family-amount">$1,850</span>
+                  </li>
+                  <li class="family-item">
+                    <span class="family-avatar family-avatar--blue" aria-hidden="true">👨</span>
+                    <div class="family-body">
+                      <p class="family-name">Ahmed Al-Mansour</p>
+                      <p class="family-role">Parent</p>
+                    </div>
+                    <span class="family-amount">$1,500</span>
+                  </li>
+                  <li class="family-item">
+                    <span class="family-avatar family-avatar--green" aria-hidden="true">🧑</span>
+                    <div class="family-body">
+                      <p class="family-name">Youssef</p>
+                      <p class="family-role">Child · 12 yrs</p>
+                    </div>
+                    <span class="family-amount">$420</span>
+                  </li>
+                  <li class="family-item">
+                    <span class="family-avatar family-avatar--amber" aria-hidden="true">👧</span>
+                    <div class="family-body">
+                      <p class="family-name">Layla</p>
+                      <p class="family-role">Child · 9 yrs</p>
+                    </div>
+                    <span class="family-amount">$180</span>
+                  </li>
+                  <li class="family-item">
+                    <span class="family-avatar family-avatar--rose" aria-hidden="true">👵</span>
+                    <div class="family-body">
+                      <p class="family-name">Grandma Aisha</p>
+                      <p class="family-role">Contributor</p>
+                    </div>
+                    <span class="family-amount">$250</span>
+                  </li>
+                </ul>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+            <!-- Settings pane -->
+            <div class="tab-pane" data-pane="parent-settings">
+              <section class="section">
+                <header class="section-head">
+                  <h3 class="section-title">Settings</h3>
+                </header>
+                <ul class="settings-list">
+                  <li class="settings-row"><span>Notifications</span><span class="settings-meta">On</span></li>
+                  <li class="settings-row"><span>Auto-deposit</span><span class="settings-meta">Weekly · $50</span></li>
+                  <li class="settings-row"><span>Linked bank</span><span class="settings-meta">Riyad Bank ••4218</span></li>
+                  <li class="settings-row"><span>Children permissions</span><span class="settings-meta">Manage</span></li>
+                  <li class="settings-row"><span>Language</span><span class="settings-meta">English</span></li>
+                  <li class="settings-row settings-row--danger"><span>Sign out</span></li>
+                </ul>
+              </section>
+              <div class="scroll-end" aria-hidden="true"></div>
+            </div>
+
+          </div>
+
+          <nav class="bottom-nav" aria-label="Parent app navigation">
+            <button class="nav-btn is-active" data-tab="parent-dashboard" aria-current="page">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 13h7V4H4zM13 10h7V4h-7zM4 20h7v-5H4zM13 20h7v-7h-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="nav-label">Dashboard</span>
+            </button>
+            <button class="nav-btn" data-tab="parent-goals">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+              </span>
+              <span class="nav-label">Goals</span>
+            </button>
+            <button class="nav-btn" data-tab="parent-family">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.5-3 3-5 6-5s5.5 2 6 5M14 19c.4-2 2-3.5 4-3.5s3.4 1 4 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="nav-label">Family</span>
+            </button>
+            <button class="nav-btn" data-tab="parent-settings">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="nav-label">Settings</span>
+            </button>
+          </nav>
+        </section>
+
+        <div class="workflow-layer" id="workflowLayer" hidden>
+          <button class="workflow-backdrop" type="button" data-action="close-flow" aria-label="Close workflow"></button>
+          <section class="workflow-sheet" role="dialog" aria-modal="true" aria-labelledby="workflowTitle">
+            <div class="workflow-handle" aria-hidden="true"></div>
+            <div class="workflow-content" id="workflowContent"></div>
+          </section>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        <div class="phone-home-indicator" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <p class="stage-foot">Shareable workflow demo: tap cards, lessons, rewards, family members, alerts, and add-goal buttons to explore the product journey.</p>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
